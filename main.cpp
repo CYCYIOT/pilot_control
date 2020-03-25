@@ -92,8 +92,6 @@ lope:
 	  //printf("run = %d\n",run++);
             flag_t=0;
 			if (run++ >= 700)
-				//printf("count = %d",count1++);
-				cout << "11" << endl;
                  goto lope;
 			
            }
