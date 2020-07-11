@@ -59,6 +59,7 @@ int socket_connect(SOCKET sclient, const char *ip,int port) //连接
    
    if (connect(sclient, (sockaddr *)&serAddr, sizeof(serAddr)) == SOCKET_ERROR)
 	{  //连接失败 
+           printf("error1 = %d\n" ,WSAGetLastError());
 			printf("connect error !\n");
 			closesocket(sclient);
 			return -1;
@@ -205,6 +206,7 @@ int  ftp_download(const char *name, void *buf, int len)//下载文件
 		return -1;
 	}
 	//连接数据端口
+	socket_data_fd= socket_create();
 	ret = socket_connect(socket_data_fd, ipaddr, port);
 	if(ret != 0)
 	{
@@ -332,7 +334,7 @@ void ftp_quit(void)
 void ftp_init(void)
 {
 	socket_cmd_fd = socket_create();
-	socket_data_fd= socket_create();
+	
 	login_ftp("192.168.100.1",21,"AW819","1663819");
 }
 int ftp_main(char *filename)
